@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin – Quantum Courier Service</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <script src="theme.js"></script>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="admin.css"/>
+  <link rel="stylesheet" href="enhance.css"/>
+  <link rel="stylesheet" href="admin-plus.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js" defer></script>
+</head>
+<body class="admin-body">
+
+  <!-- ── LOGIN ── -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="login-logo">⬡ Quantum <span style="color:var(--accent)">Courier Service</span></div>
+      <h2>Admin Portal</h2>
+      <p>Sign in to manage shipments, chats and your website.</p>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="loginEmail" placeholder="your@email.com"/>
+      </div>
+      <div class="form-group" style="margin-bottom:24px">
+        <label>Password</label>
+        <input type="password" id="loginPass" placeholder="••••••••"
+               onkeydown="if(event.key==='Enter') doLogin()"/>
+      </div>
+      <button class="btn-primary full" onclick="doLogin()">Sign In →</button>
+      <div id="loginError" class="login-error hidden"></div>
+    </div>
+  </div>
+
+  <!-- ── DASHBOARD ── -->
+  <div class="dashboard hidden" id="dashboard">
+
+    <aside class="sidebar">
+      <div class="sidebar-logo">⬡ Quantum <span style="color:var(--accent)">Courier Service</span></div>
+      <nav class="sidebar-nav">
+        <a class="sidebar-link active" data-tab="overview"  onclick="switchTab('overview')">📊 &nbsp;Overview</a>
+        <a class="sidebar-link"        data-tab="chats"     onclick="switchTab('chats')">💬 &nbsp;Live Chat <span class="nav-badge hidden" id="badgeChats">0</span></a>
+        <a class="sidebar-link"        data-tab="contacts"  onclick="switchTab('contacts')">📩 &nbsp;Contact Forms <span class="nav-badge hidden" id="badgeContacts">0</span></a>
+        <a class="sidebar-link"        data-tab="shipments" onclick="switchTab('shipments')">📦 &nbsp;Shipments</a>
+        <a class="sidebar-link"        data-tab="receipts"  onclick="switchTab('receipts')">🧾 &nbsp;Receipts</a>
+        <a class="sidebar-link"        data-tab="add"       onclick="switchTab('add')">➕ &nbsp;Add Shipment</a>
+        <a class="sidebar-link"        data-tab="reviews"   onclick="switchTab('reviews')">⭐ &nbsp;Reviews <span class="nav-badge hidden" id="badgeReviews">0</span></a>
+        <a class="sidebar-link"        data-tab="settings"  onclick="switchTab('settings')">⚙️ &nbsp;Settings</a>
+      </nav>
+      <button class="sidebar-theme" onclick="sfToggleTheme()">🌗 &nbsp;Theme</button>
+      <button class="sidebar-logout" onclick="doLogout()">🚪 &nbsp;Sign Out</button>
+      </aside>
+
+    <main class="dash-main">
+
+      
+      <!-- OVERVIEW TAB -->
+      <div id="tab-overview" class="tab-content">
+        <div class="dash-header"><h1>Overview</h1>
+          <div class="dash-actions"><button class="btn-primary" onclick="switchTab('add')">➕ New shipment</button></div></div>
+        <div class="kpi-grid" id="kpiGrid"></div>
+        <div class="ov-grid">
+          <div class="panel"><h3>Shipments by status</h3><div id="statusBars"></div></div>
+          <div class="panel"><h3>Last 7 days</h3><div id="weekBars" class="week-bars"></div></div>
+          <div class="panel"><h3>Needs attention</h3><div id="attnList"></div></div>
+          <div class="panel"><h3>Recent shipments</h3><div id="recentShips"></div></div>
+        </div>
+      </div>
+
+      <!-- LIVE CHAT TAB -->
+      <div id="tab-chats" class="tab-content hidden">
+        <div class="dash-header"><h1>Live Chat</h1>
+          <div class="dash-actions"><label class="switch-row"><input type="checkbox" id="chatSound" checked/> 🔔 Sound alerts</label></div></div>
+        <div class="chat-admin" id="chatAdmin">
+          <div class="chat-list" id="chatList"></div>
+          <div class="chat-thread" id="chatThread">
+            <div class="empty-msg" id="chatEmpty">Select a conversation.<br/><small>Visitors chat with the automated assistant first. Chats marked <b>Needs human</b> are waiting for you.</small></div>
+            <div class="ct-head hidden" id="ctHead">
+              <button class="btn-outline ct-back" onclick="chatBack()">←</button>
+              <div class="ct-title"><strong id="ctName">Visitor</strong><small id="ctMeta"></small></div>
+              <div class="ct-actions">
+                <button class="btn-outline" onclick="chatResumeBot()" title="Hand back to the automated assistant">🤖 Bot</button>
+                <button class="btn-outline" onclick="chatClose()">✔ Close</button>
+                <button class="btn-outline danger" onclick="chatDelete()">🗑</button>
+              </div>
+            </div>
+            <div class="ct-msgs hidden" id="ctMsgs"></div>
+            <div class="ct-quick hidden" id="ctQuick"></div>
+            <form class="ct-form hidden" id="ctForm" onsubmit="return chatSend(event)">
+              <input id="ctInput" placeholder="Type your reply…" autocomplete="off"/>
+              <button class="btn-primary" type="submit">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- REVIEWS TAB -->
+      <div id="tab-reviews" class="tab-content hidden">
+        <div class="dash-header"><h1>Customer Reviews</h1></div>
+        <p class="hint">Visitors can submit reviews from your home page. They stay <b>pending</b> until you approve them. Check the tracking ref, add a photo/avatar, then approve. You can also add a review yourself below.</p>
+        <div class="panel" style="max-width:720px;margin-bottom:24px">
+          <div class="form-row">
+            <div class="form-group"><label>Customer name</label><input id="rvName" placeholder="Full name"/></div>
+            <div class="form-group"><label>Role / company</label><input id="rvRole" placeholder="Importer, Brazil"/></div>
+          </div>
+          <div class="form-group"><label>Review</label><textarea id="rvText" rows="3" placeholder="What the customer said…"></textarea></div>
+          <div class="form-row">
+            <div class="form-group"><label>Stars</label><select id="rvStars"><option>5</option><option>4</option><option>3</option></select></div>
+            <div class="form-group"><label>Photo / avatar (optional)</label><input type="file" id="rvAvatar" accept="image/*"/></div>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="addReview()" style="margin:-8px 0 24px">Add review</button>
+        <div id="reviewList"></div>
+      </div>
+
+      <!-- SETTINGS TAB -->
+      <div id="tab-settings" class="tab-content hidden">
+        <div class="dash-header"><h1>Website Settings</h1>
+          <div class="dash-actions"><button class="btn-primary" onclick="saveSettings()">💾 Save settings</button></div></div>
+        <p class="hint">Changes here update the public website instantly (footer, contact page, chat, WhatsApp buttons and receipts).</p>
+        <div class="settings-grid">
+          <div class="panel">
+            <h3>Contact details</h3>
+            <div class="form-group"><label>Contact email</label><input id="stEmail" type="email"/></div>
+            <div class="form-group"><label>Phone number</label><input id="stPhone" placeholder="+10000000000"/></div>
+            <div class="form-group"><label>WhatsApp number (with country code)</label><input id="stWa" placeholder="+10000000000"/></div>
+            <div class="form-group"><label>Working hours</label><input id="stHours" placeholder="24/7"/></div>
+          </div>
+          <div class="panel">
+            <h3>Office locations</h3>
+            <div id="stOffices"></div>
+            <button class="btn-outline" onclick="addOfficeRow()">➕ Add office</button>
+          </div>
+          <div class="panel">
+            <h3>WhatsApp &amp; live chat</h3>
+            <div class="form-group"><label>Prefilled WhatsApp message ("Talk to a human")</label><textarea id="stWaMsg" rows="3"></textarea></div>
+            <label class="switch-row"><input type="checkbox" id="stChatOn"/> Show the live chat widget on the website</label>
+            <div class="form-group" style="margin-top:12px"><label>Chat greeting</label><textarea id="stGreeting" rows="2"></textarea></div>
+          </div>
+          <div class="panel">
+            <h3>Receipts</h3>
+            <div class="form-group"><label>Website shown on receipts</label><input id="stSite" placeholder="https://yourdomain.com"/></div>
+            <div class="form-group"><label>Accepted payment methods (comma separated — only list what you really accept)</label><input id="stPayMethods" placeholder="Bank transfer, Card, PayPal"/></div>
+            <div class="form-group"><label>Payment instructions (bank details, etc.)</label><textarea id="stPayInfo" rows="4" placeholder="Bank: …&#10;Account name: …&#10;Account no.: …"></textarea></div>
+            <div class="form-group"><label>Terms / footer note</label><textarea id="stTerms" rows="3" placeholder="Goods are insured as per our terms of carriage…"></textarea></div>
+          </div>
+        </div>
+        <div id="settingsStatus" class="form-status hidden" style="margin-top:16px"></div>
+      </div>
+
+      <!-- CONTACTS TAB -->
+      <div id="tab-contacts" class="tab-content hidden">
+        <div class="dash-header">
+          <h1>Contact Forms</h1>
+          <div class="dash-actions">
+            <input type="text" id="contactSearch" placeholder="Search name or email…" oninput="renderContacts()"/>
+            <button class="btn-primary" onclick="markAllRead()">Mark All Read</button>
+          </div>
+        </div>
+        <div class="stats-row" id="contactStats"></div>
+        <div id="contactList"></div>
+      </div>
+
+      <!-- SHIPMENTS TAB -->
+      <div id="tab-shipments" class="tab-content hidden">
+        <div class="dash-header">
+          <h1>Shipments</h1>
+          <div class="dash-actions">
+            <input type="text" id="shipSearch" placeholder="Search tracking ID, client, route…" oninput="renderShipments()"/>
+            <button class="btn-outline" onclick="exportShipmentsCsv()">⬇ CSV</button>
+          </div>
+        </div>
+        <div class="chips" id="shipFilters"></div>
+        <div id="shipmentList"></div>
+      </div>
+
+      <!-- RECEIPTS TAB -->
+      <div id="tab-receipts" class="tab-content hidden">
+        <div class="dash-header"><h1>Receipts</h1>
+          <div class="dash-actions"><button class="btn-outline" onclick="rpNew()">＋ New receipt</button></div></div>
+        <div class="rp-wrap">
+          <div class="rp-form contact-form-wrap">
+            <div class="form-group"><label>Start from a shipment (optional)</label>
+              <select id="rpPick" onchange="rpFill(this.value)"><option value="">— Blank receipt —</option></select></div>
+
+            <h4 class="rp-h">Receipt details</h4>
+            <div class="form-row">
+              <div class="form-group"><label>Receipt no.</label><input id="rpNo"/></div>
+              <div class="form-group"><label>Date issued</label><input type="date" id="rpDate"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>Tracking number</label><input id="rpTrack" style="letter-spacing:2px;text-transform:uppercase"/></div>
+              <div class="form-group"><label>Order ID</label><input id="rpOrder"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>Mode of transport</label><input id="rpTransport" placeholder="Air freight"/></div>
+              <div class="form-group"><label>Est. delivery date</label><input type="date" id="rpEta"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>Shipment type</label><input id="rpType" placeholder="Parcel"/></div>
+              <div class="form-group"><label>Shipment status</label><input id="rpStatus" placeholder="In Transit"/></div>
+            </div>
+
+            <h4 class="rp-h">Sender</h4>
+            <div class="form-row">
+              <div class="form-group"><label>Name</label><input id="rpFromName"/></div>
+              <div class="form-group"><label>Phone</label><input id="rpFromPhone"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>Address</label><input id="rpFromAddr"/></div>
+              <div class="form-group"><label>Origin office</label><input id="rpFromOffice"/></div>
+            </div>
+
+            <h4 class="rp-h">Consignee</h4>
+            <div class="form-row">
+              <div class="form-group"><label>Name</label><input id="rpToName"/></div>
+              <div class="form-group"><label>Phone</label><input id="rpToPhone"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>Address</label><input id="rpToAddr"/></div>
+              <div class="form-group"><label>Destination office</label><input id="rpToOffice"/></div>
+            </div>
+
+            <h4 class="rp-h">Prices</h4>
+            <label class="rp-check"><input type="checkbox" id="rpShowPrices" checked/> Show prices on receipt</label>
+            <div class="form-row">
+              <div class="form-group"><label>Currency symbol / code</label><input id="rpCur" placeholder="£ , $ , € , NGN"/></div>
+              <div class="form-group"><label>Discount (amount)</label><input type="number" min="0" step="0.01" id="rpDisc" placeholder="0"/></div>
+            </div>
+            <div id="rpItems"></div>
+            <button class="btn-outline" type="button" onclick="rpAddItem()" style="margin:4px 0 14px">＋ Add item</button>
+            <div class="rp-total" id="rpTotal"></div>
+
+            <h4 class="rp-h">Payment</h4>
+            <div class="form-row">
+              <div class="form-group"><label>Payment method</label><select id="rpPayMode"></select></div>
+              <div class="form-group"><label>Payment status</label>
+                <select id="rpPayStatus"><option>Pending</option><option>Paid</option><option>Partial</option><option>Unpaid</option></select></div>
+            </div>
+            <div class="form-group"><label>Payment instructions (bank details, etc.)</label><textarea id="rpPayInfo" rows="3"></textarea></div>
+
+            <h4 class="rp-h">Note</h4>
+            <div class="form-group"><textarea id="rpNote" rows="3" placeholder="Extra note shown on the receipt…"></textarea></div>
+            <label class="rp-check"><input type="checkbox" id="rpStamp" checked/> Show Quantum Courier Service stamp</label>
+
+            <div class="rp-actions">
+              <button class="btn-primary" onclick="rpSave()">💾 Save receipt</button>
+              <button class="btn-outline" onclick="rpDo('pdf')">⬇ PDF</button>
+              <button class="btn-outline" onclick="rpDo('png')">🖼 Image</button>
+              <button class="btn-outline" onclick="rpDo('print')">🖨 Print</button>
+              <button class="btn-outline" onclick="rpDo('sharepdf')">📤 Share PDF</button>
+              <button class="btn-outline" onclick="rpDo('shareimg')">📤 Share Image</button>
+            </div>
+            <div id="rpMsg" class="form-status hidden"></div>
+          </div>
+
+          <div class="rp-side">
+            <h4 class="rp-h" style="margin-top:0">Live preview</h4>
+            <div class="receipt-scroll"><div id="rpPaper" class="receipt"></div></div>
+            <h4 class="rp-h">Saved receipts</h4>
+            <div id="rpHistory"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADD SHIPMENT TAB -->
+      <div id="tab-add" class="tab-content hidden">
+        <div class="dash-header"><h1>Add Shipment</h1></div>
+        <div style="max-width:720px">
+          <div class="contact-form-wrap">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Tracking ID <small style="color:var(--text3);font-weight:400">(12 letters &amp; numbers)</small></label>
+                <div style="display:flex;gap:8px">
+                  <input type="text" id="sTrackId" placeholder="7K2M9QX4B8TD" maxlength="12" autocomplete="off" spellcheck="false" style="flex:1;letter-spacing:2px;font-weight:600;text-transform:uppercase"/>
+                  <button type="button" class="btn-outline" onclick="newTrackingId()" title="Generate a new tracking ID" style="padding:0 14px">🔄</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Client Name</label>
+                <input type="text" id="sClient" placeholder="Acme Corp"/>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Origin</label>
+                <input type="text" id="sOrigin" placeholder="Lagos, Nigeria"/>
+              </div>
+              <div class="form-group">
+                <label>Destination</label>
+                <input type="text" id="sDest" placeholder="Dubai, UAE"/>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Current Status</label>
+                <select id="sStatus">
+                  <option value="Picked Up">Picked Up</option>
+                  <option value="In Transit" selected>In Transit</option>
+                  <option value="Customs Clearance">Customs Clearance</option>
+                  <option value="Out for Delivery">Out for Delivery</option>
+                  <option value="Delivered">Delivered</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Current Location</label>
+                <input type="text" id="sLocation" placeholder="Dubai Hub"/>
+              </div>
+            </div>
+
+            <p style="font-size:0.72rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;margin-top:8px">📍 Starting Position (optional)</p>
+            <p style="font-size:0.74rem;color:var(--text3);margin-bottom:10px">Drag the 🚚 to set exactly where this shipment starts. You can also just leave it and set it later from the shipment's detail view.</p>
+            <div class="map3d-wrap" style="margin-bottom:24px">
+              <div id="addMap3D" class="map3d-canvas"></div>
+              <div class="map3d-hint">🖐 drag to reposition</div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Service Type</label>
+                <select id="sService">
+                  <option value="Air Freight">✈️ Air Freight</option>
+                  <option value="Sea Freight">🚢 Sea Freight</option>
+                  <option value="Road Haulage">🚚 Road Haulage</option>
+                  <option value="Warehousing">🏭 Warehousing</option>
+                  <option value="Cold Chain">🧊 Cold Chain</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Weight</label>
+                <input type="text" id="sWeight" placeholder="240 kg"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Freight charge (shown on receipt)</label>
+              <input type="text" id="sCharge" placeholder="USD 480.00"/>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>ETA</label>
+                <input type="datetime-local" id="sEta"/>
+              </div>
+              <div class="form-group">
+                <label>Pickup Date</label>
+                <input type="datetime-local" id="sLastUpdate"/>
+              </div>
+            </div>
+
+            <p style="font-size:0.72rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;margin-top:8px">Step Details (optional)</p>
+            <div class="form-row">
+              <div class="form-group"><label>Step 1 – Picked Up</label><input type="text" id="step0" placeholder="Lagos Warehouse, 2 May 09:00"/></div>
+              <div class="form-group"><label>Step 2 – In Transit</label><input type="text" id="step1" placeholder="Accra Hub"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>Step 3 – Customs</label><input type="text" id="step2" placeholder="Dubai, UAE"/></div>
+              <div class="form-group"><label>Step 4 – Out for Delivery</label><input type="text" id="step3" placeholder="Final mile courier"/></div>
+            </div>
+            <div class="form-group" style="margin-bottom:24px">
+              <label>Step 5 – Delivered</label>
+              <input type="text" id="step4" placeholder="Delivered to recipient"/>
+            </div>
+
+            <p style="font-size:0.72rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;margin:8px 0 14px">Order, sender &amp; consignee (shown on receipt)</p>
+            <div id="addExtra" class="extra-grid"></div>
+
+            <p class="field-title">📷 Product photos (up to 4)</p>
+            <div class="dropzone" id="addDrop" tabindex="0" role="button" aria-label="Upload product photos">
+              <input type="file" id="addFiles" accept="image/*" multiple hidden/>
+              <strong>Drop images here or click to browse</strong>
+              <small>JPG, PNG or WebP. Resized automatically and uploaded to Firebase Storage when you save.</small>
+            </div>
+            <div class="thumb-grid" id="addThumbs"></div>
+
+            <button class="btn-primary" onclick="addShipment()">Save Shipment 🚀</button>
+            <div id="addStatus" class="form-status hidden" style="margin-top:16px"></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ── CONTACT DETAIL MODAL ── -->
+  <div class="modal hidden" id="contactModal" onclick="closeModal(event)">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeContactModal()">✕</button>
+      <h2 id="mName">—</h2>
+      <div class="detail-grid" id="mGrid"></div>
+      <div class="detail-message" id="mMessage"></div>
+    </div>
+  </div>
+
+  <!-- ── SHIPMENT DETAIL MODAL ── -->
+  <div class="modal hidden" id="shipModal" onclick="closeModal(event)">
+    <div class="modal-card" style="max-width:760px">
+      <button class="modal-close" onclick="closeShipModal()">✕</button>
+      <h2 id="smTitle">—</h2>
+      <div class="detail-grid" id="smGrid"></div>
+
+      <div id="smExtra" class="extra-grid" style="margin-bottom:20px"></div>
+      <div id="smHistory" class="history"></div>
+
+      <!-- MAP -->
+      <div id="smMapWrap" class="hidden" style="margin-bottom:24px">
+        <p style="font-size:0.72rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px">📍 Live Position — drag the truck to set it</p>
+        <p style="font-size:0.74rem;color:var(--text3);margin-bottom:10px">Drag the 🚚 marker to the shipment's real position. Coordinates + the location name below fill in automatically. Click "Update" to save.</p>
+        <div id="smMap3DWrap" class="map3d-wrap">
+          <div id="smMap3D" class="map3d-canvas"></div>
+          <div class="map3d-hint">🖐 drag to reposition</div>
+        </div>
+      </div>
+
+      <!-- PHOTOS -->
+      <div id="smPhotosWrap" style="margin-bottom:24px">
+        <p class="field-title">📷 Product photos (up to 4)</p>
+        <div class="thumb-grid" id="smPhotosGrid"></div>
+        <div class="dropzone" id="smDrop" tabindex="0" role="button" aria-label="Add product photos">
+          <input type="file" id="smFiles" accept="image/*" multiple hidden/>
+          <strong>Add photos</strong><small>Click or drop images. Saved when you press Save Changes.</small>
+        </div>
+      </div>
+
+      <div style="margin-bottom:8px">
+        <p style="font-size:0.72rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">Update Status &amp; Location</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <select id="smStatusSelect" style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;color:var(--text);font-family:var(--font-body);font-size:0.9rem;outline:none;cursor:pointer;transition:border-color 0.2s">
+            <option value="Picked Up">Picked Up</option>
+            <option value="In Transit">In Transit</option>
+            <option value="Customs Clearance">Customs Clearance</option>
+            <option value="Out for Delivery">Out for Delivery</option>
+            <option value="Delivered">Delivered</option>
+          </select>
+          <input type="text" id="smLocationInput" placeholder="Current location…"
+                 style="flex:1;min-width:160px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;color:var(--text);font-family:var(--font-body);font-size:0.9rem;outline:none;transition:border-color 0.2s"/>
+          <button class="btn-primary" onclick="updateShipmentStatus()" style="padding:10px 22px">Save Changes</button>
+          <button class="btn-outline" onclick="openReceipt(currentShipmentId)" style="padding:10px 22px">🧾 Receipt</button>
+          <button class="btn-outline danger" onclick="deleteShipment()" style="padding:10px 16px">🗑</button>
+        </div>
+        <div id="smUpdateStatus" class="form-status hidden" style="margin-top:10px"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RECEIPT MODAL ── -->
+  <div class="modal hidden" id="receiptModal" onclick="closeModal(event)">
+    <div class="modal-card receipt-card">
+      <button class="modal-close" onclick="closeReceipt()" aria-label="Close">✕</button>
+      <div class="receipt-actions top">
+        <button class="btn-outline" onclick="downloadReceiptPdf()">⬇ Download PDF</button>
+        <button class="btn-outline" onclick="printReceipt()">🖨 Print</button>
+        <button class="btn-outline" onclick="downloadReceipt()">🖼 Image</button>
+        <button class="btn-primary" onclick="shareReceiptFile('pdf')">📤 Share PDF</button>
+        <button class="btn-outline" onclick="shareReceiptFile('png')">📤 Share Image</button>
+        <button class="btn-outline" onclick="shareReceiptWa()">💬 WhatsApp link</button>
+      </div>
+      <div class="receipt-scroll"><div id="receiptPaper" class="receipt"></div></div>
+      <div id="receiptMsg" class="form-status hidden"></div>
+    </div>
+  </div>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact – Quantum Courier Service</title>
+    <meta name="description" content="Quantum Courier Service – global air, sea and road freight, customs clearance and live shipment tracking in 180+ countries."/>
+  <meta name="theme-color" content="#080809"/>
+  <meta property="og:title" content="Quantum Courier Service – Global Logistics"/>
+  <meta property="og:description" content="Air, sea and road freight with live tracking worldwide."/>
+  <meta property="og:type" content="website"/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23080809%27/%3E%3Cpath d=%27M32 10l18 10v24L32 54 14 44V20z%27 fill=%27none%27 stroke=%27%23f59e0b%27 stroke-width=%276%27/%3E%3C/svg%3E"/>
+  <script src="theme.js"></script>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="contact.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="enhance.css"/>
+  <link rel="stylesheet" href="chat.css"/>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">⬡</span>
+        Quantum <span class="logo-accent">Courier Service</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+        <li><a href="index.html#services" data-i18n="nav_services">Services</a></li>
+        <li><a href="index.html#about" data-i18n="nav_about">About</a></li>
+        <li><a href="index.html#tracking" data-i18n="nav_tracking">Track</a></li>
+        <li><a href="contact.html" class="btn-nav active" data-i18n="nav_contact">Contact Us</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="fr">FR</button>
+          <button class="lang-btn" data-lang="es">ES</button>
+        </div>
+        <button class="hamburger" id="hamburger">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTACT HERO -->
+  <section class="contact-hero">
+    <div class="contact-hero-bg"></div>
+    <div class="container">
+      <p class="section-tag" data-i18n="contact_tag">GET IN TOUCH</p>
+      <h1 data-i18n="contact_hero_title">Let's Move<br/><span class="accent">Your Cargo</span></h1>
+      <p data-i18n="contact_hero_sub">Fill out the form and our logistics team will respond within 2 hours.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT BODY -->
+  <section class="contact-body">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- FORM -->
+        <div class="contact-form-wrap">
+          <h3 data-i18n="form_title">Send Us a Message</h3>
+          <div id="contactForm" class="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label data-i18n="form_name">Full Name</label>
+                <input type="text" id="fname" placeholder="John Doe"/>
+              </div>
+              <div class="form-group">
+                <label data-i18n="form_email">Email</label>
+                <input type="email" id="femail" placeholder="john@company.com"/>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label data-i18n="form_phone">Phone</label>
+                <input type="tel" id="fphone" placeholder="+1 (800) 000-0000"/>
+              </div>
+              <div class="form-group">
+                <label data-i18n="form_service">Service Type</label>
+                <select id="fservice">
+                  <option value="" data-i18n="form_service_placeholder">Select a service...</option>
+                  <option value="air">✈️ Air Freight</option>
+                  <option value="sea">🚢 Sea Freight</option>
+                  <option value="road">🚚 Road Haulage</option>
+                  <option value="warehouse">🏭 Warehousing</option>
+                  <option value="cold">🧊 Cold Chain</option>
+                  <option value="customs">📋 Customs Brokerage</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom:18px">
+              <label data-i18n="form_subject">Subject</label>
+              <input type="text" id="fsubject" placeholder="Shipment inquiry from New York"/>
+            </div>
+            <div class="form-group" style="margin-bottom:24px">
+              <label data-i18n="form_message">Message</label>
+              <textarea id="fmessage" rows="5" placeholder="Describe your cargo, route, and any special requirements..."></textarea>
+            </div>
+            <button type="button" class="btn-primary full" onclick="submitContactForm()" data-i18n="form_submit">Send Message 🚀</button>
+            <div id="formStatus" class="form-status hidden" style="margin-top:14px"></div>
+          </div>
+        </div>
+
+        <!-- INFO -->
+        <div class="contact-info">
+          <div class="info-card">
+            <div class="info-icon">📍</div>
+            <h4 data-i18n="info_offices">Our Offices</h4>
+            <div data-site="offices"><p>New York City, USA</p></div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">📱</div>
+            <h4 data-i18n="info_call">Call / WhatsApp</h4>
+            <p><a data-site="phone" href="tel:+10000000000">+10000000000</a></p>
+            <a class="btn-wa" data-wa href="#" style="margin-top:10px"><span>💬</span> <span data-i18n="talk_human">Talk to a human about your order process</span></a>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">📧</div>
+            <h4 data-i18n="info_email">Email Us</h4>
+            <p><a data-site="email" href="mailto:your-email@example.com">your-email@example.com</a></p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">⏰</div>
+            <h4 data-i18n="info_hours">Working Hours</h4>
+            <p data-i18n="info_hours_val">24/7 — We never stop moving.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo">⬡ Quantum <span class="logo-accent">Courier Service</span></span>
+        <p data-i18n="footer_desc">Moving the world's cargo with precision and speed since 2010.</p>
+      </div>
+      <div class="footer-links">
+        <h4 data-i18n="footer_company">Company</h4>
+        <a href="index.html#about" data-i18n="footer_about">About Us</a>
+        <a href="index.html#services" data-i18n="footer_services">Services</a>
+        <a href="contact.html" data-i18n="footer_contact">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h4 data-i18n="footer_services_title">Services</h4>
+        <a href="#">Air Freight</a>
+        <a href="#">Sea Freight</a>
+        <a href="#">Road Haulage</a>
+        <a href="#">Warehousing</a>
+      </div>
+      <div class="footer-contact">
+        <h4 data-i18n="footer_reach">Get in Touch</h4>
+        <p>📧 <a data-site="email" href="mailto:your-email@example.com">your-email@example.com</a></p>
+        <p>📞 <a data-site="phone" href="tel:+10000000000">+10000000000</a></p>
+        <p>💬 <a data-wa href="#" data-i18n="talk_human_short">Chat on WhatsApp</a></p>
+        <div data-site="offices"><p>📍 New York City, USA</p></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span data-year>2026</span> Quantum Courier Service. <span data-i18n="footer_rights">All rights reserved.</span></p>
+    </div>
+  </footer>
+
+  <script src="i18n-more.js"></script>
+  <script src="i18n.js"></script>
+  <script type="module" src="contact.js"></script>
+  <script type="module" src="main.js"></script>
+  <script type="module" src="site.js"></script>
+</body>
+</html>
