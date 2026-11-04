@@ -17,6 +17,7 @@
   <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   <link rel="stylesheet" href="enhance.css"/>
   <link rel="stylesheet" href="chat.css"/>
+  <link rel="stylesheet" href="redesign.css"/>
 </head>
 <body>
   <!-- NAV -->
@@ -106,7 +107,7 @@
         <p class="section-sub" data-i18n="services_sub">From pickup to last-mile delivery, every step is tracked and optimized.</p>
       </div>
       <div class="services-grid">
-        <div class="service-card reveal">
+        <div class="service-card reveal" style="--img:url(images/air.jpg)">
           <span class="service-icon">✈️</span>
           <h3 data-i18n="svc1_title">Air Freight</h3>
           <p data-i18n="svc1_desc">Express global air cargo with guaranteed transit times to 180+ destinations.</p>
@@ -118,25 +119,25 @@
           <p data-i18n="svc2_desc">Full container load (FCL) and less-than-container (LCL) ocean shipping solutions.</p>
           <a href="contact.html" class="service-link" data-i18n="svc_link">Learn More →</a>
         </div>
-        <div class="service-card reveal">
+        <div class="service-card reveal" style="--img:url(images/sea.jpg)">
           <span class="service-icon">🚚</span>
           <h3 data-i18n="svc3_title">Road Haulage</h3>
           <p data-i18n="svc3_desc">Domestic and cross-border trucking with real-time GPS tracking on every load.</p>
           <a href="contact.html" class="service-link" data-i18n="svc_link">Learn More →</a>
         </div>
-        <div class="service-card reveal">
+        <div class="service-card reveal" style="--img:url(images/road.jpg)">
           <span class="service-icon">🏭</span>
           <h3 data-i18n="svc4_title">Warehousing</h3>
           <p data-i18n="svc4_desc">Secure bonded warehouses with inventory management and fulfillment services.</p>
           <a href="contact.html" class="service-link" data-i18n="svc_link">Learn More →</a>
         </div>
-        <div class="service-card reveal">
+        <div class="service-card reveal" style="--img:url(images/cold.jpg)">
           <span class="service-icon">🧊</span>
           <h3 data-i18n="svc5_title">Cold Chain</h3>
           <p data-i18n="svc5_desc">Temperature-controlled logistics for pharma, food, and sensitive goods.</p>
           <a href="contact.html" class="service-link" data-i18n="svc_link">Learn More →</a>
         </div>
-        <div class="service-card reveal">
+        <div class="service-card reveal" style="--img:url(images/customs.jpg)">
           <span class="service-icon">📋</span>
           <h3 data-i18n="svc6_title">Customs Brokerage</h3>
           <p data-i18n="svc6_desc">Expert customs clearance, documentation, and compliance in every country.</p>
@@ -167,6 +168,7 @@
   </section>
 
   <!-- WHY US -->
+  <section class="about-band" aria-hidden="true"><div class="about-band-inner"><p class="section-tag">GLOBAL NETWORK</p><h2>Moving freight through 180+ countries, every day.</h2></div></section>
   <section class="why-us" id="about">
     <div class="container">
       <div class="section-header reveal">
