@@ -1,7 +1,7 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function isAdmin() { return request.auth != null; }
+    function isAdmin() { return request.auth != null && request.auth.token.email == 'quantumfreightcx@gmail.com'; }
 
     // Tracking page looks shipments up by ID, so reads are public; only signed-in admins write
     match /shipments/{id} { allow read: if true; allow write: if isAdmin(); }

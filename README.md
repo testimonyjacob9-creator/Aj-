@@ -14,7 +14,7 @@ Logistics site with live shipment tracking and an admin portal (Firebase Auth, F
 2. `npm i -g firebase-tools && firebase login`
 3. `firebase deploy --only firestore:rules,storage` (review `firestore.rules` first; it replaces any rules you have now)
 4. So the receipt PNG can include the product photo:
-   `gsutil cors set cors.json gs://YOUR_PROJECT_ID.firebasestorage.app`
+   `gsutil cors set cors.json gs://market-41a4b.firebasestorage.app`
    (If skipped, receipts still work, just without the photo.)
 
 If Storage isn't enabled, uploads fall back to a compressed inline copy so the app keeps working.

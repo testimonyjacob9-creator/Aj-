@@ -4,10 +4,10 @@ service firebase.storage {
     // Product photos: public to read (shown on tracking page), admin-only to change
     match /shipments/{trackingId}/{file} {
       allow read: if true;
-      allow create, update: if request.auth != null
+      allow create, update: if request.auth != null && request.auth.token.email == 'quantumfreightcx@gmail.com'
                             && request.resource.size < 10 * 1024 * 1024
                             && request.resource.contentType.matches('image/.*');
-      allow delete: if request.auth != null;
+      allow delete: if request.auth != null && request.auth.token.email == 'quantumfreightcx@gmail.com';
     }
   }
 }

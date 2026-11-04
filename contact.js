@@ -9,13 +9,13 @@ import { getFirestore, collection, addDoc, serverTimestamp }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey:            "YOUR_FIREBASE_API_KEY",
-  authDomain:        "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId:         "YOUR_PROJECT_ID",
-  storageBucket:     "YOUR_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId:             "YOUR_APP_ID",
-  measurementId:     "YOUR_MEASUREMENT_ID"
+  apiKey:            "AIzaSyDUuUMxoU9xK-LcZExXZ4JkJefjT7kpf9A",
+  authDomain:        "market-41a4b.firebaseapp.com",
+  projectId:         "market-41a4b",
+  storageBucket:     "market-41a4b.firebasestorage.app",
+  messagingSenderId: "847149567581",
+  appId:             "1:847149567581:web:e6d7e8cb652238b74107b4",
+  measurementId:     "G-YNE9G7066C"
 };
 
 const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
