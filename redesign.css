@@ -11,7 +11,7 @@ h1,h2,h3,h4,.hero-title{font-family:'Outfit',sans-serif;letter-spacing:-.02em;fo
 .hamburger,.lang-btn{color:var(--ink)}
 /* HERO with photo */
 .hero{min-height:88vh;display:flex;align-items:center;position:relative;color:#fff;
- background:linear-gradient(100deg,rgba(12,31,36,.92) 0%,rgba(12,31,36,.7) 55%,rgba(12,31,36,.35) 100%),url(images/hero.jpg) center/cover no-repeat,linear-gradient(135deg,#0c1f24,#0e8f7e)}
+ background:linear-gradient(100deg,rgba(12,31,36,.92) 0%,rgba(12,31,36,.7) 55%,rgba(12,31,36,.35) 100%),url(https://images.unsplash.com/photo-1759272548457-12b8580bfca7?auto=format&fit=crop&w=2000&q=70) center/cover no-repeat,linear-gradient(135deg,#0c1f24,#0e8f7e)}
 .hero-bg,.hero-visual,.hero-orb,.hero-grid{display:none}
 .hero-content{max-width:720px;padding:120px 24px 80px;margin-left:max(24px,calc((100vw - 1200px)/2))}
 .hero-badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:999px}
@@ -35,7 +35,7 @@ h1,h2,h3,h4,.hero-title{font-family:'Outfit',sans-serif;letter-spacing:-.02em;fo
 .tracking-section{background:linear-gradient(var(--navy),var(--navy2));color:#fff}.tracking-section h2,.tracking-section p{color:#fff}
 /* photo band */
 .about-band{height:340px;display:flex;align-items:center;color:#fff;
- background:linear-gradient(rgba(12,31,36,.78),rgba(12,31,36,.78)),url(images/network.jpg) center/cover fixed,linear-gradient(135deg,#0c1f24,#0e8f7e)}
+ background:linear-gradient(rgba(12,31,36,.78),rgba(12,31,36,.78)),url(https://images.unsplash.com/photo-1769837496184-32831581c55a?auto=format&fit=crop&w=2000&q=70) center/cover fixed,linear-gradient(135deg,#0c1f24,#0e8f7e)}
 .about-band-inner{max-width:1200px;margin:auto;padding:0 24px}.about-band h2{color:#fff;max-width:640px;font-size:clamp(1.8rem,4vw,2.8rem)}.about-band .section-tag{color:var(--gold)}
 .why-card{background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 4px 16px rgba(15,23,42,.05)}.why-card h4{color:var(--navy)}.why-card p{color:var(--mut)}
 .cta-banner{background:var(--blue);color:#fff}.cta-banner h2,.cta-banner p{color:#fff}.cta-banner .btn-primary{background:#fff!important;color:var(--blue)!important}
@@ -43,7 +43,7 @@ h1,h2,h3,h4,.hero-title{font-family:'Outfit',sans-serif;letter-spacing:-.02em;fo
 @media(max-width:700px){.hero{min-height:80vh}.hero-stats{gap:20px}.about-band{background-attachment:scroll}}
 /* v2 layout: centered hero, stats bar, 3-column photo cards, bigger type */
 .hero{justify-content:center;text-align:center;min-height:92vh;
- background:linear-gradient(180deg,rgba(12,31,36,.55),rgba(12,31,36,.85)),url(images/hero.jpg) center/cover no-repeat,linear-gradient(135deg,#0c1f24,#0e8f7e)}
+ background:linear-gradient(180deg,rgba(12,31,36,.55),rgba(12,31,36,.85)),url(https://images.unsplash.com/photo-1759272548457-12b8580bfca7?auto=format&fit=crop&w=2000&q=70) center/cover no-repeat,linear-gradient(135deg,#0c1f24,#0e8f7e)}
 .hero-content{margin:0 auto;max-width:880px;padding:140px 24px 150px}
 .hero-sub{margin:18px auto 0}.hero-cta{display:flex;gap:14px;justify-content:center;margin-top:30px;flex-wrap:wrap}
 .hero-title{font-size:clamp(2.6rem,7vw,5rem)}
