@@ -14,11 +14,11 @@ export const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfi
 export const db  = getFirestore(app);
 export const DEFAULTS = {
   brand: "Quantum Courier Service",
-  email: "your-email@example.com",
-  phone: "+10000000000",
-  whatsapp: "+10000000000",
+  email: "quantumfreightcx@gmail.com",
+  phone: "+1 725 377 2637",
+  whatsapp: "+1 725 377 2637",
   hours: "24/7",
-  offices: [{ name: "Head Office", address: "New York City, USA" }],
+  offices: [{ name: "Head Office", address: "USA" }],
   waMessage: "Hello Quantum Courier Service 👋 I'd like to talk to a human about my order processes.",
   chatEnabled: true,
   chatGreeting: "Hi 👋 I'm the Quantum Courier Service assistant. How can I help you today?"

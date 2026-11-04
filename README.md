@@ -24,7 +24,7 @@ If Storage isn't enabled, uploads fall back to a compressed inline copy so the a
 **Deploy the new Firestore rules** (required for settings, reviews and live chat):
 `firebase deploy --only firestore:rules`
 
-- Admin → **Settings**: office locations, phone, email, WhatsApp number (default +10000000000), prefilled WhatsApp message, chat greeting, receipt payment instructions/terms. The public site updates instantly.
+- Admin → **Settings**: office locations, phone, email, WhatsApp number (default +1 725 377 2637), prefilled WhatsApp message, chat greeting, receipt payment instructions/terms. The public site updates instantly.
 - Admin → **Live Chat**: real-time inbox. Visitors talk to an automated assistant until they ask for a human; then their messages arrive here and your replies appear in their chat. They can also continue on WhatsApp with a prefilled message.
 - Admin → **Shipments**: 12-character tracking IDs (auto-generated), sender/consignee details, payment status, status history, CSV export, order receipt as **PDF**, image, print or WhatsApp.
 - Admin → **Reviews**: add genuine customer reviews. The Reviews section on the home page stays hidden until you add one.

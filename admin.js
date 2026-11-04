@@ -826,8 +826,8 @@ async function uploadPending(list, trackingId, statusEl) {
 // REALTIME: contacts, chats, alerts
 // ═════════════════════════════════════════════════════
 let SETTINGS = {
-  email: "your-email@example.com", phone: "+10000000000", whatsapp: "+10000000000",
-  hours: "24/7", offices: [{ name: "Head Office", address: "New York City, USA" }],
+  email: "quantumfreightcx@gmail.com", phone: "+1 725 377 2637", whatsapp: "+1 725 377 2637",
+  hours: "24/7", offices: [{ name: "Head Office", address: "USA" }],
   waMessage: "Hello Quantum Courier Service 👋 I'd like to talk to a human about my order processes.",
   chatEnabled: true, chatGreeting: "Hi 👋 I'm the Quantum Courier Service assistant. How can I help you today?",
   website: "", payInfo: "", payMethods: "Bank transfer, Card, PayPal", terms: "Goods are carried subject to our terms of carriage. Keep this receipt for claims."
