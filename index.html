@@ -5,193 +5,111 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Quantum Courier Service – Global Logistics Solutions</title>
     <meta name="description" content="Quantum Courier Service – global air, sea and road freight, customs clearance and live shipment tracking in 180+ countries."/>
-  <meta name="theme-color" content="#080809"/>
+  <meta name="theme-color" content="#0f172a"/>
   <meta property="og:title" content="Quantum Courier Service – Global Logistics"/>
   <meta property="og:description" content="Air, sea and road freight with live tracking worldwide."/>
   <meta property="og:type" content="website"/>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23080809%27/%3E%3Cpath d=%27M32 10l18 10v24L32 54 14 44V20z%27 fill=%27none%27 stroke=%27%23f59e0b%27 stroke-width=%276%27/%3E%3C/svg%3E"/>
   <script src="theme.js"></script>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <link href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet"/>
-  <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-  <link rel="stylesheet" href="enhance.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
   <link rel="stylesheet" href="chat.css"/>
-  <link rel="stylesheet" href="redesign.css"/>
+  <link rel="stylesheet" href="imp.css"/>
 </head>
 <body>
-  <!-- NAV -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
-      <a href="index.html" class="logo">
-        <span class="logo-icon">⬡</span>
-        Quantum <span class="logo-accent">Courier Service</span>
-      </a>
+      <a href="index.html" class="logo"><span class="logo-icon"><i class="fa-solid fa-earth-americas"></i></span><span>Quantum <span class="logo-accent">Courier Service</span></span></a>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="active" data-i18n="nav_home">Home</a></li>
         <li><a href="#services" data-i18n="nav_services">Services</a></li>
         <li><a href="#about" data-i18n="nav_about">About</a></li>
         <li><a href="#tracking" data-i18n="nav_tracking">Track</a></li>
-        <li class="nav-reviews"><a href="#reviews" data-i18n="nav_reviews">Reviews</a></li>
+        <li class="nav-reviews hidden"><a href="#reviews" data-i18n="nav_reviews">Reviews</a></li>
         <li><a href="contact.html" class="btn-nav" data-i18n="nav_contact">Contact Us</a></li>
       </ul>
-      <div class="nav-right">
-        <div class="lang-switcher" id="langSwitcher">
-          <button class="lang-btn active" data-lang="en">EN</button>
-          <button class="lang-btn" data-lang="fr">FR</button>
-          <button class="lang-btn" data-lang="es">ES</button>
-        </div>
-        <button class="hamburger" id="hamburger">&#9776;</button>
-      </div>
+      <div class="nav-right"><button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button></div>
     </div>
   </nav>
+  <div class="lang-switcher" id="langSwitcher"></div>
 
-  <!-- HERO -->
   <section class="hero" id="home">
-    <div class="hero-bg">
-      <div class="hero-grid"></div>
-      <div class="hero-orb orb1"></div>
-      <div class="hero-orb orb2"></div>
-    </div>
+    <div class="hero-slides"><i style="background-image:url(https://images.unsplash.com/photo-1585713181935-d5f622cc2415?auto=format&fit=crop&w=1600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1775449053619-89b5265f611a?auto=format&fit=crop&w=1600&q=70)"></i></div>
+    <i class="fa-solid fa-plane hero-plane"></i>
     <div class="hero-content">
-      <div class="hero-badge" data-i18n="hero_badge">🌍 Trusted Worldwide Since 2010</div>
-      <h1 class="hero-title" data-i18n="hero_title">Move Anything,<br/><span class="accent">Anywhere.</span></h1>
-      <p class="hero-sub" data-i18n="hero_sub">Quantum Courier Service delivers precision logistics across 180+ countries. Air, sea, road — we move your world with speed and reliability.</p>
+      <h1 class="hero-title" data-i18n="hero_title">Global Freight,<br/><span class="accent">Handled With Care</span></h1>
+      <p class="hero-sub" data-i18n="hero_sub">Quantum Courier Service moves parcels, pallets and full containers by air, sea and road, with a live tracking link on every shipment.</p>
       <div class="hero-cta">
-        <a href="contact.html" class="btn-primary" data-i18n="hero_cta1">Get a Quote</a>
-        <a href="#tracking" class="btn-outline" data-i18n="hero_cta2">Track Shipment</a>
+        <a href="#services" class="btn-primary" data-i18n="hero_cta1">Explore Services</a>
+        <a href="contact.html" class="btn-outline"><span data-i18n="hero_cta2">Contact Us</span> <i class="fa-solid fa-arrow-right"></i></a>
       </div>
-      <div class="hero-stats">
-        <div class="stat"><span class="stat-num" data-count="180" data-suffix="+">180+</span><span class="stat-label" data-i18n="stat1">Countries</span></div>
-        <div class="stat"><span class="stat-num" data-count="50" data-suffix="K+">50K+</span><span class="stat-label" data-i18n="stat2">Deliveries/mo</span></div>
-        <div class="stat"><span class="stat-num" data-count="99.8" data-suffix="%">99.8%</span><span class="stat-label" data-i18n="stat3">On-Time Rate</span></div>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="globe-ring ring1"></div>
-      <div class="globe-ring ring2"></div>
-      <div class="globe-ring ring3"></div>
-      <div class="globe-core">🌐</div>
-      <div class="float-card card1">✈️ Air Freight</div>
-      <div class="float-card card2">🚢 Sea Cargo</div>
-      <div class="float-card card3">🚚 Road Haulage</div>
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee-strip">
-    <div class="marquee-track">
-      <span>AIR FREIGHT</span><span>●</span>
-      <span>SEA CARGO</span><span>●</span>
-      <span>ROAD HAULAGE</span><span>●</span>
-      <span>COLD CHAIN</span><span>●</span>
-      <span>CUSTOMS CLEARING</span><span>●</span>
-      <span>WAREHOUSING</span><span>●</span>
-      <span>LAST MILE DELIVERY</span><span>●</span>
-      <span>AIR FREIGHT</span><span>●</span>
-      <span>SEA CARGO</span><span>●</span>
-      <span>ROAD HAULAGE</span><span>●</span>
-      <span>COLD CHAIN</span><span>●</span>
-      <span>CUSTOMS CLEARING</span><span>●</span>
-      <span>WAREHOUSING</span><span>●</span>
-      <span>LAST MILE DELIVERY</span><span>●</span>
+  <section class="tracking-section" id="tracking">
+    <div class="track-card reveal">
+      <h2 data-i18n="track_title">Where's My Parcel?</h2>
+      <p data-i18n="track_sub">Type in your tracking number to see a live status update on your shipment.</p>
+      <div class="track-input-group">
+        <input type="text" id="trackInput" placeholder="Enter your tracking number" maxlength="24" autocomplete="off" autocapitalize="characters" spellcheck="false" data-i18n-placeholder="track_placeholder"/>
+        <button onclick="trackShipment()" data-i18n="track_btn">Track Now</button>
+      </div>
+      <div id="trackResult" class="track-result hidden"></div>
+      <a class="btn-wa" data-wa data-wa-msg="Hello Quantum Courier Service 👋 I need help with my order. I'd like to talk to a human about my order processes." href="#"><i class="fa-brands fa-whatsapp"></i> <span data-i18n="talk_human">Talk to a human about your order process</span></a>
+      <p class="track-hint" data-i18n="track_hint">Your tracking number is 12 letters and numbers, e.g. 7K2M9QX4B8TD.</p>
     </div>
-  </div>
+  </section>
 
-  <!-- SERVICES -->
   <section class="services" id="services">
     <div class="container">
-      <div class="section-header reveal">
-        <p class="section-tag" data-i18n="services_tag">WHAT WE DO</p>
-        <h2 data-i18n="services_title">End-to-End Logistics Services</h2>
-        <p class="section-sub" data-i18n="services_sub">From pickup to last-mile delivery, every step is tracked and optimized.</p>
-      </div>
+      <div class="section-header reveal"><h2 data-i18n="services_title">What We Ship, and How</h2><p class="section-sub" data-i18n="services_sub">Air, sea, road and storage options built around your cargo, your budget and your deadline.</p></div>
       <div class="services-grid">
-        <div class="service-card reveal" style="--img:url(https://images.unsplash.com/photo-1775449053619-89b5265f611a?auto=format&fit=crop&w=900&q=70)">
-          <span class="service-icon">✈️</span>
-          <h3 data-i18n="svc1_title">Air Freight</h3>
-          <p data-i18n="svc1_desc">Express global air cargo with guaranteed transit times to 180+ destinations.</p>
-          <a href="contact.html" class="service-link" data-i18n="svc_link">Learn More →</a>
-        </div>
-        <div class="service-card featured reveal">
-          <span class="service-icon">🚢</span>
-          <h3 data-i18n="svc2_title">Sea Freight</h3>
-          <p data-i18n="svc2_desc">Full container load (FCL) and less-than-container (LCL) ocean shipping solutions.</p>
-          <a href="contact.html" class="service-link" data-i18n="svc_link">Learn More →</a>
-        </div>
-        <div class="service-card reveal" style="--img:url(https://images.unsplash.com/photo-1585713181935-d5f622cc2415?auto=format&fit=crop&w=900&q=70)">
-          <span class="service-icon">🚚</span>
-          <h3 data-i18n="svc3_title">Road Haulage</h3>
-          <p data-i18n="svc3_desc">Domestic and cross-border trucking with real-time GPS tracking on every load.</p>
-          <a href="contact.html" class="service-link" data-i18n="svc_link">Learn More →</a>
-        </div>
-        <div class="service-card reveal" style="--img:url(https://images.unsplash.com/photo-1616432043562-3671ea2e5242?auto=format&fit=crop&w=900&q=70)">
-          <span class="service-icon">🏭</span>
-          <h3 data-i18n="svc4_title">Warehousing</h3>
-          <p data-i18n="svc4_desc">Secure bonded warehouses with inventory management and fulfillment services.</p>
-          <a href="contact.html" class="service-link" data-i18n="svc_link">Learn More →</a>
-        </div>
-        <div class="service-card reveal" style="--img:url(https://images.unsplash.com/photo-1695222833131-54ee679ae8e5?auto=format&fit=crop&w=900&q=70)">
-          <span class="service-icon">🧊</span>
-          <h3 data-i18n="svc5_title">Cold Chain</h3>
-          <p data-i18n="svc5_desc">Temperature-controlled logistics for pharma, food, and sensitive goods.</p>
-          <a href="contact.html" class="service-link" data-i18n="svc_link">Learn More →</a>
-        </div>
-        <div class="service-card reveal" style="--img:url(https://images.unsplash.com/photo-1605732562742-3023a888e56e?auto=format&fit=crop&w=900&q=70)">
-          <span class="service-icon">📋</span>
-          <h3 data-i18n="svc6_title">Customs Brokerage</h3>
-          <p data-i18n="svc6_desc">Expert customs clearance, documentation, and compliance in every country.</p>
-          <a href="contact.html" class="service-link" data-i18n="svc_link">Learn More →</a>
-        </div>
+        <article class="service-card reveal"><div class="svc-img" style="--img:url(https://images.unsplash.com/photo-1775449053619-89b5265f611a?auto=format&fit=crop&w=900&q=70)"><b></b><span class="service-icon"><i class="fa-solid fa-plane"></i></span></div>
+          <div class="svc-body"><h3 data-i18n="svc1_title">Air Freight</h3><p data-i18n="svc1_desc">Fast international air cargo with fixed transit schedules to more than 180 destinations.</p><a href="contact.html" class="service-link" data-i18n="svc_link">Learn More →</a></div></article>
+        <article class="service-card reveal"><div class="svc-img" style="--img:url(https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=900&q=70)"><b></b><span class="service-icon"><i class="fa-solid fa-ship"></i></span></div>
+          <div class="svc-body"><h3 data-i18n="svc2_title">Sea Freight</h3><p data-i18n="svc2_desc">Full and shared container shipping, port to port or straight to your door.</p><a href="contact.html" class="service-link" data-i18n="svc_link">Learn More →</a></div></article>
+        <article class="service-card reveal"><div class="svc-img" style="--img:url(https://images.unsplash.com/photo-1585713181935-d5f622cc2415?auto=format&fit=crop&w=900&q=70)"><b></b><span class="service-icon"><i class="fa-solid fa-truck"></i></span></div>
+          <div class="svc-body"><h3 data-i18n="svc3_title">Road Haulage</h3><p data-i18n="svc3_desc">Reliable domestic and cross-border trucking, with GPS updates on every load.</p><a href="contact.html" class="service-link" data-i18n="svc_link">Learn More →</a></div></article>
+        <article class="service-card reveal"><div class="svc-img" style="--img:url(https://images.unsplash.com/photo-1616432043562-3671ea2e5242?auto=format&fit=crop&w=900&q=70)"><b></b><span class="service-icon"><i class="fa-solid fa-warehouse"></i></span></div>
+          <div class="svc-body"><h3 data-i18n="svc4_title">Warehousing</h3><p data-i18n="svc4_desc">Secure bonded storage with stock control, picking and packing handled by our team.</p><a href="contact.html" class="service-link" data-i18n="svc_link">Learn More →</a></div></article>
+        <article class="service-card reveal"><div class="svc-img" style="--img:url(https://images.unsplash.com/photo-1695222833131-54ee679ae8e5?auto=format&fit=crop&w=900&q=70)"><b></b><span class="service-icon"><i class="fa-solid fa-snowflake"></i></span></div>
+          <div class="svc-body"><h3 data-i18n="svc5_title">Cold Chain</h3><p data-i18n="svc5_desc">Temperature-controlled transport for medicines, food and other sensitive goods.</p><a href="contact.html" class="service-link" data-i18n="svc_link">Learn More →</a></div></article>
+        <article class="service-card reveal"><div class="svc-img" style="--img:url(https://images.unsplash.com/photo-1605732562742-3023a888e56e?auto=format&fit=crop&w=900&q=70)"><b></b><span class="service-icon"><i class="fa-solid fa-file-signature"></i></span></div>
+          <div class="svc-body"><h3 data-i18n="svc6_title">Customs Brokerage</h3><p data-i18n="svc6_desc">We prepare the paperwork and clear your goods through customs in every market we serve.</p><a href="contact.html" class="service-link" data-i18n="svc_link">Learn More →</a></div></article>
       </div>
     </div>
   </section>
 
-  <!-- TRACKING -->
-  <section class="tracking-section" id="tracking">
-    <div class="container">
-      <div class="track-card">
-        <div class="track-left reveal from-left">
-          <p class="section-tag" data-i18n="track_tag">REAL-TIME</p>
-          <h2 data-i18n="track_title">Track Your Shipment</h2>
-          <p data-i18n="track_sub">Enter your tracking number to get instant updates on your cargo location.</p>
-          <div class="track-input-group">
-            <input type="text" id="trackInput" placeholder="Enter 12-character tracking number" maxlength="24" autocomplete="off" autocapitalize="characters" spellcheck="false" data-i18n-placeholder="track_placeholder"/>
-            <button onclick="trackShipment()" data-i18n="track_btn">Track Now</button>
-          </div>
-          <div id="trackResult" class="track-result hidden"></div>
-          <a class="btn-wa" data-wa data-wa-msg="Hello Quantum Courier Service 👋 I need help with my order. I'd like to talk to a human about my order processes." href="#"><span>💬</span> <span data-i18n="talk_human">Talk to a human about your order process</span></a>
-          <p class="track-hint" data-i18n="track_hint">Your tracking number is 12 letters and numbers, e.g. 7K2M9QX4B8TD.</p>
-        </div>
-      </div>
-    </div>
+  <section class="strip" aria-hidden="true">
+    <h2 data-i18n="n_net_title">Freight in Motion</h2><p data-i18n="n_net_sub">Ships, planes, trucks and warehouses working together so your cargo keeps moving.</p>
+    <div class="strip-track"><i style="background-image:url(https://images.unsplash.com/photo-1775449053619-89b5265f611a?auto=format&fit=crop&w=600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1585713181935-d5f622cc2415?auto=format&fit=crop&w=600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1616432043562-3671ea2e5242?auto=format&fit=crop&w=600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1605732562742-3023a888e56e?auto=format&fit=crop&w=600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1775449053619-89b5265f611a?auto=format&fit=crop&w=600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1585713181935-d5f622cc2415?auto=format&fit=crop&w=600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1616432043562-3671ea2e5242?auto=format&fit=crop&w=600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=70)"></i><i style="background-image:url(https://images.unsplash.com/photo-1605732562742-3023a888e56e?auto=format&fit=crop&w=600&q=70)"></i></div>
   </section>
 
-  <!-- WHY US -->
-  <section class="about-band" aria-hidden="true"><div class="about-band-inner"><p class="section-tag">GLOBAL NETWORK</p><h2>Moving freight through 180+ countries, every day.</h2></div></section>
   <section class="why-us" id="about">
     <div class="container">
-      <div class="section-header reveal">
-        <p class="section-tag" data-i18n="why_tag">WHY QUANTUM COURIER SERVICE</p>
-        <h2 data-i18n="why_title">The Freight Partner You Can Trust</h2>
-      </div>
+      <div class="section-header reveal"><h2 data-i18n="why_title">Why Shippers Choose Us</h2></div>
       <div class="why-grid">
-        <div class="why-card reveal zoom"><div class="why-icon">⚡</div><h4 data-i18n="why1_title">Lightning Fast</h4><p data-i18n="why1_desc">Same-day processing and 24/7 operations ensure your cargo never waits.</p></div>
-        <div class="why-card reveal zoom"><div class="why-icon">🔒</div><h4 data-i18n="why2_title">Fully Insured</h4><p data-i18n="why2_desc">Every shipment is covered with comprehensive cargo insurance globally.</p></div>
-        <div class="why-card reveal zoom"><div class="why-icon">📍</div><h4 data-i18n="why3_title">Live Tracking</h4><p data-i18n="why3_desc">Real-time GPS visibility on every shipment, every mile of the journey.</p></div>
-        <div class="why-card reveal zoom"><div class="why-icon">🌐</div><h4 data-i18n="why4_title">Global Network</h4><p data-i18n="why4_desc">180+ country coverage with trusted local partners in every region.</p></div>
+        <div class="why-card reveal zoom"><div class="why-icon"><i class="fa-solid fa-bolt"></i></div><h4 data-i18n="why1_title">Fast Turnaround</h4><p data-i18n="why1_desc">Cargo is processed the same day and our desks run around the clock.</p></div>
+        <div class="why-card reveal zoom"><div class="why-icon"><i class="fa-solid fa-shield-halved"></i></div><h4 data-i18n="why2_title">Insured Cargo</h4><p data-i18n="why2_desc">Every consignment is covered by cargo insurance from pickup to delivery.</p></div>
+        <div class="why-card reveal zoom"><div class="why-icon"><i class="fa-solid fa-location-dot"></i></div><h4 data-i18n="why3_title">Live Tracking</h4><p data-i18n="why3_desc">See where your goods are at every stage of the journey, any time.</p></div>
+        <div class="why-card reveal zoom"><div class="why-icon"><i class="fa-solid fa-globe"></i></div><h4 data-i18n="why4_title">Global Reach</h4><p data-i18n="why4_desc">Trusted partner agents in more than 180 countries.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- REVIEWS: approved customer reviews + submission form -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="glass big reveal"><div style="display:flex;gap:18px;align-items:center"><span class="ic"><i class="fa-solid fa-star"></i></span><h3 style="font-size:1.8rem" data-i18n="n_st_big_t">On-Time Delivery</h3></div>
+        <div class="num"><span data-count="99.8" data-suffix="%">99.8%</span> <small style="display:inline" data-i18n="n_st_big_l">on-time rate</small></div><p data-i18n="n_st_big_d">Shipments reach their destination on schedule across every lane we operate.</p></div>
+      <div class="glass reveal"><span class="ic"><i class="fa-solid fa-calendar-check"></i></span><div><div class="num"><span data-count="16" data-suffix="+">16+</span></div><small data-i18n="n_st1">Years in Freight</small></div></div>
+      <div class="glass reveal"><span class="ic"><i class="fa-solid fa-earth-africa"></i></span><div><div class="num"><span data-count="180" data-suffix="+">180+</span></div><small data-i18n="n_st2">Countries Served</small></div></div>
+      <div class="glass reveal"><span class="ic"><i class="fa-solid fa-box-open"></i></span><div><div class="num"><span data-count="50" data-suffix="K+">50K+</span></div><small data-i18n="n_st3">Deliveries Every Month</small></div></div>
+    </div>
+  </section>
+
   <section class="reviews" id="reviews" aria-labelledby="reviewsTitle">
     <div class="container">
-      <div class="section-header reveal">
-        <p class="section-tag" data-i18n="reviews_tag">CLIENT FEEDBACK</p>
-        <h2 id="reviewsTitle" data-i18n="reviews_title">Trusted by shippers who can't afford delays</h2>
-        <p class="section-sub" data-i18n="reviews_sub2">Shipped with us? Tell others how it went.</p>
-      </div>
+      <div class="section-header reveal"><h2 id="reviewsTitle" data-i18n="reviews_title">What Our Clients Say</h2><p class="section-sub" data-i18n="reviews_sub2">Shipped with us? Share how it went.</p></div>
       <div class="reviews-grid" id="reviewsGrid"></div>
       <p class="reviews-empty" id="reviewsEmpty" data-i18n="reviews_empty">Be the first to share your experience.</p>
       <form class="review-form" onsubmit="return submitReview(event)">
@@ -210,50 +128,44 @@
     </div>
   </section>
 
-  <!-- CTA BANNER -->
   <section class="cta-banner">
     <div class="cta-inner reveal zoom">
-      <h2 data-i18n="cta_title">Ready to Ship Smarter?</h2>
-      <p data-i18n="cta_sub">Join 10,000+ businesses that trust Quantum Courier Service for their logistics needs.</p>
-      <a href="contact.html" class="btn-primary large" data-i18n="cta_btn">Get Started Today</a>
-      <a class="btn-wa" data-wa href="#" style="margin-left:12px"><span>💬</span> <span data-i18n="talk_human">Talk to a human about your order process</span></a>
+      <h2 data-i18n="cta_title">Have Cargo To Move?</h2>
+      <p data-i18n="cta_sub">Tell us what you are shipping and where it needs to go. We will take it from there.</p>
+      <a href="contact.html" class="btn-primary" data-i18n="cta_btn">Request a Quote</a>
+      <a class="btn-wa" data-wa href="#"><i class="fa-brands fa-whatsapp"></i> <span data-i18n="talk_human">Talk to a human about your order process</span></a>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <span class="logo">⬡ Quantum <span class="logo-accent">Courier Service</span></span>
-        <p data-i18n="footer_desc">Moving the world's cargo with precision and speed since 2010.</p>
+        <a class="logo" href="index.html"><span class="logo-icon"><i class="fa-solid fa-earth-americas"></i></span><span>Quantum <span class="logo-accent">Courier Service</span></span></a>
+        <p data-i18n="footer_desc">Quantum Courier Service is a global freight forwarder offering air, sea and road shipping, warehousing and live tracking.</p>
+        <div class="socials"><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a><a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a><a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></div>
       </div>
       <div class="footer-links">
-        <h4 data-i18n="footer_company">Company</h4>
-        <a href="#about" data-i18n="footer_about">About Us</a>
-        <a href="#services" data-i18n="footer_services">Services</a>
-        <a href="contact.html" data-i18n="footer_contact">Contact</a>
-      </div>
-      <div class="footer-links">
-        <h4 data-i18n="footer_services_title">Services</h4>
-        <a href="#">Air Freight</a>
-        <a href="#">Sea Freight</a>
-        <a href="#">Road Haulage</a>
-        <a href="#">Warehousing</a>
+        <h4 data-i18n="n_ql">Quick Links</h4>
+        <a href="index.html" data-i18n="nav_home">Home</a><a href="#about" data-i18n="footer_about">About Us</a><a href="#services" data-i18n="n_services_l">Our Services</a><a href="#tracking" data-i18n="nav_tracking">Track</a><a href="contact.html" data-i18n="footer_contact">Contact</a>
       </div>
       <div class="footer-contact">
-        <h4 data-i18n="footer_reach">Get in Touch</h4>
-        <p>📧 <a data-site="email" href="mailto:quantumfreightcx@gmail.com">quantumfreightcx@gmail.com</a></p>
-        <p>📞 <a data-site="phone" href="tel:+1 725 377 2637">+1 725 377 2637</a></p>
-        <p>💬 <a data-wa href="#" data-i18n="talk_human_short">Chat on WhatsApp</a></p>
-        <div data-site="offices"><p>📍 USA</p></div>
+        <h4 data-i18n="n_ci">Contact Info</h4>
+        <div class="fc"><i class="fa-solid fa-envelope"></i><div><small data-i18n="n_email">Email us</small><a data-site="email" href="mailto:quantumfreightcx@gmail.com">quantumfreightcx@gmail.com</a></div></div>
+        <div class="fc"><i class="fa-solid fa-phone"></i><div><small data-i18n="n_call">Call us</small><a data-site="phone" href="tel:+17253772637">+1 725 377 2637</a></div></div>
+        <div class="fc"><i class="fa-solid fa-clock"></i><div><small data-i18n="n_hours">Working hours</small><span class="v" data-site="hours">24/7</span></div></div>
+        <div class="fc"><i class="fa-solid fa-location-dot"></i><div data-site="offices" class="v"><p>USA</p></div></div>
+      </div>
+      <div class="qt">
+        <h4 data-i18n="n_qt">Quick Track</h4>
+        <input id="fTrack" placeholder="Enter your tracking number" data-i18n-placeholder="track_placeholder" autocomplete="off" autocapitalize="characters"/>
+        <button onclick="var v=document.getElementById('fTrack').value.replace(/\s+/g,'').toUpperCase();if(v)location.href='track.html?id='+encodeURIComponent(v)"><i class="fa-solid fa-magnifying-glass"></i> <span data-i18n="n_qt_btn">Track</span></button>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© <span data-year>2026</span> Quantum Courier Service. <span data-i18n="footer_rights">All rights reserved.</span></p>
-    </div>
+    <div class="footer-bottom"><p>© <span data-year>2026</span> Quantum Courier Service. <span data-i18n="footer_rights">All rights reserved.</span></p></div>
   </footer>
 
   <script src="i18n-more.js"></script>
+  <script src="i18n-wording.js"></script>
   <script src="i18n.js"></script>
   <script type="module" src="main.js"></script>
   <script type="module" src="site.js"></script>
